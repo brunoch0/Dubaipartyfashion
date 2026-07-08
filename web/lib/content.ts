@@ -20,6 +20,7 @@ export interface HeroContent {
   secondary_label?: MLText;
   secondary_href?: string;
   visual_url?: string;
+  video_url?: string;
   visual_alt?: MLText;
 }
 

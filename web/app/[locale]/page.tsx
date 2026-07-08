@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { isLocale, pick, type Locale } from '@/lib/i18n';
@@ -16,6 +15,7 @@ import {
 } from '@/lib/content';
 import Impression from '@/components/Impression';
 import HeroCta from '@/components/HeroCta';
+import HeroVisual from '@/components/HeroVisual';
 import TrackedLink from '@/components/TrackedLink';
 import WaitlistForm from '@/components/WaitlistForm';
 import { ArticleCard, EventCard, LookbookCard } from '@/components/cards';
@@ -48,18 +48,11 @@ export default async function LandingPage({
       {/* ===== Hero ===== */}
       <Impression event="hero_impression" props={{ position: 'hero' }}>
         <section className="relative flex min-h-[82vh] items-center justify-center overflow-hidden">
-          {hero?.visual_url ? (
-            <Image
-              src={hero.visual_url}
-              alt={pick(hero.visual_alt, l) || ''}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
-          ) : (
-            <div className="brand-gradient absolute inset-0" aria-hidden="true" />
-          )}
+          <HeroVisual
+            videoUrl={hero?.video_url}
+            imageUrl={hero?.visual_url}
+            alt={pick(hero?.visual_alt, l) || ''}
+          />
           <div className="absolute inset-0 bg-black/35" aria-hidden="true" />
           <div className="relative z-10 mx-auto max-w-3xl px-6 py-24 text-center text-white">
             {pick(hero?.badge, l) && (
