@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* ============================================================
+   BellinaGrigia Design Tokens
+   Brand identity is NOT final — swap values here only.
+   Every color / typography / radius decision flows from these.
+   ============================================================ */
+:root {
+  /* Brand palette — "beautiful grey" placeholder theme */
+  --brand-bg: #f4f3f1;          /* warm paper grey */
+  --brand-surface: #ffffff;
+  --brand-surface-muted: #eceae7;
+  --brand-ink: #211f1d;         /* near-black warm ink */
+  --brand-ink-soft: #5c5854;
+  --brand-ink-faint: #94908b;
+  --brand-line: #dcd9d5;
+  --brand-accent: #8d8478;      /* greige accent */
+  --brand-accent-ink: #ffffff;
+  --brand-gradient: linear-gradient(160deg, #3a3733 0%, #6e675f 55%, #a39b90 100%);
+
+  /* Typography */
+  --font-display: var(--font-marcellus), var(--font-noto-kr), var(--font-noto-ar), serif;
+  --font-body: var(--font-noto-kr), var(--font-noto-ar), -apple-system, sans-serif;
+
+  /* Shape */
+  --radius-card: 2px;           /* editorial, sharp */
+  --radius-button: 0px;
+}
+
+@theme inline {
+  --color-bg: var(--brand-bg);
+  --color-surface: var(--brand-surface);
+  --color-surface-muted: var(--brand-surface-muted);
+  --color-ink: var(--brand-ink);
+  --color-ink-soft: var(--brand-ink-soft);
+  --color-ink-faint: var(--brand-ink-faint);
+  --color-line: var(--brand-line);
+  --color-accent: var(--brand-accent);
+  --color-accent-ink: var(--brand-accent-ink);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --radius-card: var(--radius-card);
+  --radius-button: var(--radius-button);
+}
+
+body {
+  background: var(--brand-bg);
+  color: var(--brand-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+/* Hero fallback when no visual is set */
+.brand-gradient {
+  background: var(--brand-gradient);
+}
+
+/* Markdown body */
+.prose-brand { line-height: 1.85; }
+.prose-brand p { margin: 1em 0; }
+.prose-brand h2 { font-size: 1.35rem; margin: 1.8em 0 0.6em; }
+.prose-brand h3 { font-size: 1.15rem; margin: 1.5em 0 0.5em; }
+.prose-brand ul, .prose-brand ol { padding-inline-start: 1.4em; margin: 1em 0; }
+.prose-brand ul { list-style: disc; }
+.prose-brand ol { list-style: decimal; }
+.prose-brand blockquote {
+  border-inline-start: 2px solid var(--brand-accent);
+  padding-inline-start: 1em;
+  color: var(--brand-ink-soft);
+  margin: 1.4em 0;
+}
+.prose-brand a { text-decoration: underline; text-underline-offset: 3px; }
+.prose-brand img { margin: 1.5em 0; }
