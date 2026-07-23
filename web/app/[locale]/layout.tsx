@@ -70,6 +70,13 @@ export default async function RootLayout({
         <Header locale={l} />
         <main className="flex-1">{children}</main>
         <Footer locale={l} />
+        {/* Discreet admin entry — corner button on every public page */}
+        <a
+          href="/admin"
+          className="fixed bottom-4 z-50 border border-line bg-surface/80 px-3 py-1.5 text-[11px] uppercase tracking-widest text-ink-faint opacity-60 backdrop-blur transition-opacity hover:opacity-100 hover:text-ink ltr:right-4 rtl:left-4"
+        >
+          Admin
+        </a>
       </body>
     </html>
   );
