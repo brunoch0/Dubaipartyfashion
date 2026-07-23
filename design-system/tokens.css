@@ -1,0 +1,29 @@
+/* BellinaGrigia Design Tokens — single source: web/app/globals.css */
+:root {
+  /* Color */
+  --brand-bg: #f4f3f1;
+  --brand-surface: #ffffff;
+  --brand-surface-muted: #eceae7;
+  --brand-ink: #211f1d;
+  --brand-ink-soft: #5c5854;
+  --brand-ink-faint: #94908b;
+  --brand-line: #dcd9d5;
+  --brand-accent: #8d8478;
+  --brand-accent-ink: #ffffff;
+  --brand-logo-grey: #8a857e; /* logo artwork color */
+  --brand-gradient: linear-gradient(160deg, #3a3733 0%, #6e675f 55%, #a39b90 100%);
+
+  /* Typography */
+  --font-script: 'Pinyon Script', cursive;      /* logo wordmark approximation */
+  --font-display: 'Marcellus', serif;           /* headlines */
+  --font-body: 'Noto Sans KR', sans-serif;      /* body ko/en */
+  --font-body-ar: 'Noto Sans Arabic', sans-serif; /* body ar (RTL) */
+
+  /* Shape — editorial sharp */
+  --radius-card: 2px;
+  --radius-button: 0px;
+
+  /* Imagery */
+  --filter-film-tone: grayscale(1) contrast(1.08) brightness(0.95);
+  /* video slow-motion: playbackRate 0.6 */
+}

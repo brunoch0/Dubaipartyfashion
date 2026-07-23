@@ -2,8 +2,10 @@
 
 Claude Design(claude.ai/design) 프로젝트와 동기화되는 브랜드 시스템 소스.
 
-- `foundations/` — 컬러 토큰, 타이포, 로고 사용 규칙, 이미지 톤 가이드
+- `foundations/` — 브랜드 정의/보이스, 컬러 토큰, 타이포, 로고 사용 규칙, 이미지 톤, 스페이싱/레이아웃
 - `components/` — 버튼, 폼, 콘텐츠 카드, 히어로, 내비게이션
+- `templates/` — 인스타그램 피드/스토리 프레임
+- `tokens.css` — 토큰 요약 파일 (원본은 web/app/globals.css)
 - `assets/` — 로고: `logo-original.jpeg`(파트너 제공 목업) · `logo-full.png`(재제작 투명 로크업) · `logo-mark.png`(B 모노그램, 파비콘용). 웹 배포용 사본은 `web/public/brand/` + `web/app/icon.png`
 
 ## 원칙

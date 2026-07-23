@@ -1,0 +1,62 @@
+<!-- @dsCard group="Foundations" -->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BellinaGrigia — Spacing & Layout</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans KR', -apple-system, sans-serif; background: #f4f3f1; color: #211f1d; padding: 32px; }
+  h1 { font-size: 15px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 4px; }
+  p.note { font-size: 12px; color: #5c5854; margin-bottom: 22px; }
+  .row { border: 1px solid #dcd9d5; background: #fff; padding: 16px 18px; margin-bottom: 10px; }
+  .label { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #94908b; margin-bottom: 10px; }
+  .scale { display: flex; align-items: flex-end; gap: 10px; }
+  .bar { background: #8d8478; width: 34px; position: relative; }
+  .bar span { position: absolute; top: -18px; left: 0; right: 0; text-align: center; font-size: 9.5px; color: #5c5854; }
+  .bp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 11.5px; line-height: 1.6; }
+  .bp div { border: 1px solid #dcd9d5; padding: 10px 12px; }
+  .bp b { display: block; font-size: 12px; }
+  .radius-demo { display: flex; gap: 14px; align-items: center; }
+  .sq { width: 72px; height: 44px; background: #211f1d; color: #fff; font-size: 10px; display: flex; align-items: center; justify-content: center; letter-spacing: .1em; }
+  ul { padding-left: 1.2em; font-size: 11.5px; line-height: 1.8; color: #5c5854; }
+</style>
+</head>
+<body>
+  <h1>Spacing &amp; Layout</h1>
+  <p class="note">4px 기반 스케일 · 콘텐츠 최대폭 72rem(1152px) · 모바일 우선. 에디토리얼 무드 = 여백을 아끼지 않는다.</p>
+  <div class="row">
+    <div class="label">Spacing Scale (Tailwind 기준)</div>
+    <div class="scale" style="height:76px">
+      <div class="bar" style="height:8px"><span>2·8</span></div>
+      <div class="bar" style="height:16px"><span>4·16</span></div>
+      <div class="bar" style="height:24px"><span>6·24</span></div>
+      <div class="bar" style="height:32px"><span>8·32</span></div>
+      <div class="bar" style="height:48px"><span>12·48</span></div>
+      <div class="bar" style="height:64px"><span>16·64</span></div>
+      <div class="bar" style="height:80px"><span>20·80 (섹션)</span></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="label">Breakpoints / Grid</div>
+    <div class="bp">
+      <div><b>Mobile (기본)</b>1열 · 패딩 24px · 갤러리 1열</div>
+      <div><b>sm 640px+</b>카드 2열 · 폼 2열</div>
+      <div><b>lg 1024px+</b>카드 3열 · 룩북 3~4열</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="label">Shape — Radius 0 (Editorial Sharp)</div>
+    <div class="radius-demo"><div class="sq">BUTTON</div><ul style="margin:0"><li>버튼·인풋·카드 모두 라운딩 0 — 토큰 --radius-button / --radius-card</li><li>부드러움은 곡선이 아니라 여백과 회색조로 만든다</li></ul></div>
+  </div>
+  <div class="row">
+    <div class="label">RTL (아랍어)</div>
+    <ul>
+      <li>물리 속성(left/right) 대신 논리 속성(inline-start/end) 사용 — 코드베이스 전체 적용됨</li>
+      <li>아랍어 선택 시 html dir="rtl" 자동 — 레이아웃·아이콘 방향 미러링</li>
+    </ul>
+  </div>
+</body>
+</html>
