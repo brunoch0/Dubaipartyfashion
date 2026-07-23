@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { t } from '@/lib/dictionary';
 import type { Locale } from '@/lib/i18n';
 import LocaleSwitcher from './LocaleSwitcher';
 
 export default function Header({ locale }: { locale: Locale }) {
+  // Navigation stays English in every locale (brand decision, 2026-07-23)
   const nav = [
-    { href: `/${locale}/about`, label: t('nav_about', locale) },
-    { href: `/${locale}/journal`, label: t('nav_journal', locale) },
-    { href: `/${locale}/lookbook`, label: t('nav_lookbook', locale) },
-    { href: `/${locale}/events`, label: t('nav_events', locale) },
-    { href: `/${locale}/shop`, label: t('nav_shop', locale) },
+    { href: `/${locale}/about`, label: 'About' },
+    { href: `/${locale}/journal`, label: 'Journal' },
+    { href: `/${locale}/lookbook`, label: 'Lookbook' },
+    { href: `/${locale}/events`, label: 'Events' },
+    { href: `/${locale}/shop`, label: 'Shop' },
   ];
 
   return (

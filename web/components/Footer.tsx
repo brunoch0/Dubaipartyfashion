@@ -38,7 +38,7 @@ export default async function Footer({ locale }: { locale: Locale }) {
             </TrackedLink>
           ))}
           <Link href={`/${locale}/about`} className="hover:text-ink transition-colors">
-            {t('nav_about', locale)}
+            About
           </Link>
         </div>
       </div>
