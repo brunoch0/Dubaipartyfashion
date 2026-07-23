@@ -4,7 +4,7 @@ Claude Design(claude.ai/design) 프로젝트와 동기화되는 브랜드 시스
 
 - `foundations/` — 컬러 토큰, 타이포, 로고 사용 규칙, 이미지 톤 가이드
 - `components/` — 버튼, 폼, 콘텐츠 카드, 히어로, 내비게이션
-- `assets/` — 로고 원본 (웹 배포용은 `web/public/brand/`)
+- `assets/` — 로고: `logo-original.jpeg`(파트너 제공 목업) · `logo-full.png`(재제작 투명 로크업) · `logo-mark.png`(B 모노그램, 파비콘용). 웹 배포용 사본은 `web/public/brand/` + `web/app/icon.png`
 
 ## 원칙
 - 여기의 값은 `web/app/globals.css`의 디자인 토큰과 1:1 대응 — 사이트가 단일 소스, 이 문서는 시각화.

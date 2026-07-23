@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { t } from '@/lib/dictionary';
 import type { Locale } from '@/lib/i18n';
@@ -12,7 +13,13 @@ export default async function Footer({ locale }: { locale: Locale }) {
     <footer className="border-t border-line bg-surface-muted">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:px-6 md:flex-row md:items-start md:justify-between">
         <div>
-          <p className="font-script text-3xl leading-none">Bellinagrigia</p>
+          <Image
+            src="/brand/logo.png"
+            alt="Bellinagrigia — Est. 2016"
+            width={129}
+            height={135}
+            className="h-24 w-auto"
+          />
           <p className="mt-3 max-w-sm text-sm text-ink-soft">
             {t('shop_notice', locale)}
           </p>

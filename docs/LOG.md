@@ -5,6 +5,13 @@
 
 ---
 
+## 2026-07-23 — 로고 재제작 / 영어 기본 정책
+
+- 파트너 제공 로고 목업(JPEG, 종이질감)을 기반으로 클린 버전 재제작 (Higgsfield nano_banana_pro + 배경 제거 + 화이트 키잉):
+  - `logo-full.png` 투명 로크업(B + Bellinagrigia + Est. 2016), `logo-mark.png` B 모노그램
+  - 적용: 푸터 로고 이미지, 파비콘(`web/app/icon.png`) — 벡터(SVG) 원본은 여전히 파트너 요청 항목
+- 언어 정책: **영어 기본** — 첫 방문은 브라우저 언어 무관 `/en`, 토글 선택(쿠키)만 예외. 한국어 숨김은 `VISIBLE_LOCALES`에서 'ko' 제거 한 줄이면 됨 (파트너 요청 시)
+
 ## 2026-07-21 — 2회차 미팅 반영 / 브랜드 시스템 착수
 
 **미팅 내용** ([Notion 2회차](https://app.notion.com/p/3a43ca2e0c29809e9176ee081cc3fce2)):
