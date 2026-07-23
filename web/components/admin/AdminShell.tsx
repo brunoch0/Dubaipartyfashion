@@ -16,6 +16,7 @@ const NAV = [
   { href: '/admin/preorder', label: '사전예약' },
   { href: '/admin/waitlist', label: '대기명단' },
   { href: '/admin/rsvps', label: 'RSVP' },
+  { href: '/admin/audit', label: '변경 기록' },
   { href: '/admin/account', label: '내 계정' },
 ];
 
