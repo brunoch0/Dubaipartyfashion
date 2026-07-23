@@ -5,6 +5,12 @@
 
 ---
 
+## 2026-07-23 — 브랜드 시스템 사이트 적용
+
+- 표기 통일: 코드·메타데이터·DB 콘텐츠 전체 "Bellinagrigia" (B만 대문자)
+- 기본 OG 공유 이미지 추가 (`/brand/og.png` — 로크업 + 웜 페이퍼 배경) + og:site_name/트위터 카드
+- 로고(푸터·파비콘), 스크립트 폰트, 필름톤은 기적용 상태 유지
+
 ## 2026-07-23 — 브랜드 시스템 완성 (Claude Design)
 
 - Claude Design "BellinaGrigia Design System" 프로젝트를 완전한 브랜드 킷으로 확장 (14개 파일):
