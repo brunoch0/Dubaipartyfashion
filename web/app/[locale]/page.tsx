@@ -61,7 +61,7 @@ export default async function LandingPage({
               </span>
             )}
             <h1 className="font-display text-4xl leading-tight sm:text-5xl md:text-6xl">
-              {pick(hero?.headline, l) || 'BellinaGrigia'}
+              {pick(hero?.headline, l) || 'Bellinagrigia'}
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-base text-white/85 sm:text-lg">
               {pick(hero?.subcopy, l)}

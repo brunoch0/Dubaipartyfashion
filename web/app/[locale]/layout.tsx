@@ -30,11 +30,19 @@ const pinyon = Pinyon_Script({
 
 export const metadata: Metadata = {
   title: {
-    default: 'BellinaGrigia — Dubai Lifestyle Brand',
-    template: '%s · BellinaGrigia',
+    default: 'Bellinagrigia — Dubai Lifestyle Brand',
+    template: '%s · Bellinagrigia',
   },
   description:
     'A taste-driven lifestyle brand born from the Dubai community and party network. Fashion, partywear and fragrance — coming soon.',
+  openGraph: {
+    siteName: 'Bellinagrigia',
+    type: 'website',
+    images: ['/brand/og.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
 };
 
 export function generateStaticParams() {
