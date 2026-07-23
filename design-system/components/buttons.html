@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BellinaGrigia — Buttons</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans KR', -apple-system, sans-serif; background: #f4f3f1; color: #211f1d; padding: 32px; }
+  h1 { font-size: 15px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 4px; }
+  p.note { font-size: 12px; color: #5c5854; margin-bottom: 24px; }
+  .row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; border: 1px solid #dcd9d5; background: #fff; padding: 18px 20px; margin-bottom: 10px; }
+  .row.dark { background: #211f1d; }
+  .label { flex-basis: 130px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #94908b; }
+  .btn { display: inline-block; padding: 12px 32px; font-size: 13px; letter-spacing: .15em; text-transform: uppercase; text-decoration: none; cursor: pointer; border: 0; border-radius: 0; }
+  .btn-primary { background: #211f1d; color: #fff; }
+  .btn-primary:hover { opacity: .85; }
+  .btn-outline { background: transparent; color: #211f1d; border: 1px solid #dcd9d5; }
+  .btn-outline:hover { border-color: #211f1d; }
+  .btn-hero { background: #fff; color: #211f1d; }
+  .btn-hero-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.6); }
+  .btn-disabled { background: #211f1d; color: #fff; opacity: .5; cursor: not-allowed; }
+  .link { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #211f1d; text-decoration: none; border-bottom: 1px solid #211f1d; padding-bottom: 2px; }
+  .chip { padding: 6px 12px; font-size: 11px; border: 1px solid #dcd9d5; background: #fff; color: #5c5854; cursor: pointer; }
+  .chip.on { border-color: #211f1d; background: #211f1d; color: #fff; }
+</style>
+</head>
+<body>
+  <h1>Buttons</h1>
+  <p class="note">라운딩 0 (--radius-button), 대문자 + 자간 .15em. 전환 CTA는 Primary만 사용.</p>
+  <div class="row"><span class="label">Primary</span><button class="btn btn-primary">Join the Waitlist</button><button class="btn btn-primary">대기명단 가입</button></div>
+  <div class="row"><span class="label">Outline</span><button class="btn btn-outline">View All</button></div>
+  <div class="row dark"><span class="label">On Visual</span><button class="btn btn-hero">Join the Waitlist</button><button class="btn btn-hero-outline">Discover the Brand</button></div>
+  <div class="row"><span class="label">Disabled / Loading</span><button class="btn btn-disabled">Submitting…</button></div>
+  <div class="row"><span class="label">Text Link</span><a class="link" href="#">Read More</a></div>
+  <div class="row"><span class="label">Tag Chips</span><button class="chip on">fashion</button><button class="chip">partywear</button><button class="chip">fragrance</button></div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Marcellus, Noto_Sans_KR, Noto_Sans_Arabic } from 'next/font/google';
+import { Marcellus, Noto_Sans_KR, Noto_Sans_Arabic, Pinyon_Script } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import '../globals.css';
 import { LOCALES, isLocale, dir, type Locale } from '@/lib/i18n';
@@ -20,6 +20,12 @@ const notoKr = Noto_Sans_KR({
 const notoAr = Noto_Sans_Arabic({
   subsets: ['arabic'],
   variable: '--font-noto-ar',
+});
+
+const pinyon = Pinyon_Script({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-pinyon',
 });
 
 export const metadata: Metadata = {
@@ -50,7 +56,7 @@ export default async function RootLayout({
     <html
       lang={l}
       dir={dir(l)}
-      className={`${marcellus.variable} ${notoKr.variable} ${notoAr.variable} h-full antialiased`}
+      className={`${marcellus.variable} ${notoKr.variable} ${notoAr.variable} ${pinyon.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Header locale={l} />

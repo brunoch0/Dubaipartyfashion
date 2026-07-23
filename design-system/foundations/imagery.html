@@ -1,0 +1,42 @@
+<!-- @dsCard group="Foundations" -->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BellinaGrigia — Imagery</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Noto Sans KR', sans-serif; background: #f4f3f1; color: #211f1d; padding: 32px; }
+  h1 { font-size: 15px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 4px; }
+  p.note { font-size: 12px; color: #5c5854; margin-bottom: 20px; line-height: 1.6; }
+  .demo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .frame { position: relative; aspect-ratio: 16/10; overflow: hidden; border: 1px solid #dcd9d5; }
+  .scene { position: absolute; inset: 0; background:
+    radial-gradient(circle at 25% 30%, #d4a45a 0%, transparent 30%),
+    radial-gradient(circle at 70% 60%, #7a4f8f 0%, transparent 40%),
+    radial-gradient(circle at 55% 20%, #4a7fb5 0%, transparent 35%),
+    linear-gradient(160deg, #2a2530 0%, #4a3f52 100%); }
+  .bw { filter: grayscale(1) contrast(1.08) brightness(0.95); }
+  .tag { position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,.55); color: #fff; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; }
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rule { border: 1px solid #dcd9d5; background: #fff; padding: 12px 14px; font-size: 11.5px; line-height: 1.6; }
+  .rule b { display: block; margin-bottom: 2px; font-size: 12px; }
+  code { font-family: ui-monospace, monospace; font-size: 10.5px; color: #5c5854; }
+</style>
+</head>
+<body>
+  <h1>Imagery — B&amp;W Film Tone</h1>
+  <p class="note">모든 비주얼(사진·영상)은 흑백 필름톤으로 통일. 소스가 컬러여도 CSS 필터가 강제 적용되어 톤이 유지된다.</p>
+  <div class="demo">
+    <div class="frame"><div class="scene"></div><span class="tag">원본 (컬러)</span></div>
+    <div class="frame"><div class="scene bw"></div><span class="tag">적용 후 (필름톤)</span></div>
+  </div>
+  <div class="rules">
+    <div class="rule"><b>톤 공식</b><code>filter: grayscale(1) contrast(1.08) brightness(0.95)</code><br>영상은 재생속도 0.6x 슬로우모션 추가.</div>
+    <div class="rule"><b>피사체</b>파티·샴페인·컨페티·스카이라인·패션 디테일. 화려한 순간을 절제된 톤으로.</div>
+    <div class="rule"><b>구도</b>얕은 심도(보케), 아나모픽 느낌, 인물은 동작 중간의 자연스러운 순간.</div>
+    <div class="rule"><b>금지</b>채도 있는 이미지 혼용, 스톡 느낌의 정적인 포즈, 과한 HDR.</div>
+  </div>
+</body>
+</html>

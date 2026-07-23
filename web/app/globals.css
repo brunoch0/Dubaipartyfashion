@@ -21,6 +21,7 @@
   /* Typography */
   --font-display: var(--font-marcellus), var(--font-noto-kr), var(--font-noto-ar), serif;
   --font-body: var(--font-noto-kr), var(--font-noto-ar), -apple-system, sans-serif;
+  --font-script: var(--font-pinyon), cursive; /* logo wordmark approximation */
 
   /* Shape */
   --radius-card: 2px;           /* editorial, sharp */
@@ -53,6 +54,10 @@ body {
 h1, h2, h3, .font-display {
   font-family: var(--font-display);
   letter-spacing: 0.01em;
+}
+
+.font-script {
+  font-family: var(--font-script);
 }
 
 /* Hero fallback when no visual is set */

@@ -1,0 +1,50 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BellinaGrigia — Navigation</title>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Pinyon+Script&family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans KR', -apple-system, sans-serif; background: #f4f3f1; color: #211f1d; padding: 32px; }
+  h1 { font-size: 15px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 4px; }
+  p.note { font-size: 12px; color: #5c5854; margin-bottom: 20px; }
+  .frame { border: 1px solid #dcd9d5; margin-bottom: 14px; background: #fff; }
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px; background: rgba(244,243,241,.92); border-bottom: 1px solid #dcd9d5; }
+  .wordmark { font-family: 'Marcellus', serif; font-size: 16px; letter-spacing: .2em; text-transform: uppercase; }
+  nav { display: flex; gap: 22px; font-size: 13px; color: #5c5854; }
+  nav span:hover { color: #211f1d; }
+  .lang { display: flex; gap: 4px; font-size: 10.5px; }
+  .lang span { padding: 3px 8px; color: #5c5854; }
+  .lang .on { background: #211f1d; color: #fff; }
+  .footer { background: #eceae7; padding: 26px 22px 18px; }
+  .f-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  .script { font-family: 'Pinyon Script', cursive; font-size: 30px; line-height: 1; }
+  .f-note { font-size: 12px; color: #5c5854; margin-top: 6px; max-width: 300px; }
+  .f-links { display: flex; gap: 16px; font-size: 12.5px; color: #5c5854; }
+  .copy { text-align: center; font-size: 10.5px; color: #94908b; margin-top: 20px; }
+</style>
+</head>
+<body>
+  <h1>Navigation — Header / Footer</h1>
+  <p class="note">헤더는 가독성 위해 Marcellus 대문자 워드마크, 푸터는 로고 스크립트 무드(Pinyon Script). 스티키 헤더 + 블러.</p>
+  <div class="frame">
+    <div class="header">
+      <span class="wordmark">Bellinagrigia</span>
+      <nav><span>About</span><span>Journal</span><span>Lookbook</span><span>Events</span><span>Shop</span></nav>
+      <div class="lang"><span class="on">EN</span><span>한국어</span><span>عربي</span></div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="footer">
+      <div class="f-top">
+        <div><div class="script">Bellinagrigia</div><p class="f-note">Our shop is opening soon — fashion, partywear and fragrance.</p></div>
+        <div class="f-links"><span>Instagram</span><span>Snapchat</span><span>About</span></div>
+      </div>
+      <div class="copy">© 2026 Bellinagrigia · Est. 2016 · Dubai, UAE</div>
+    </div>
+  </div>
+</body>
+</html>

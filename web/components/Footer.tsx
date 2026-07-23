@@ -12,8 +12,8 @@ export default async function Footer({ locale }: { locale: Locale }) {
     <footer className="border-t border-line bg-surface-muted">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:px-6 md:flex-row md:items-start md:justify-between">
         <div>
-          <p className="font-display text-lg tracking-widest uppercase">BellinaGrigia</p>
-          <p className="mt-2 max-w-sm text-sm text-ink-soft">
+          <p className="font-script text-3xl leading-none">Bellinagrigia</p>
+          <p className="mt-3 max-w-sm text-sm text-ink-soft">
             {t('shop_notice', locale)}
           </p>
         </div>
@@ -36,7 +36,7 @@ export default async function Footer({ locale }: { locale: Locale }) {
         </div>
       </div>
       <p className="pb-6 text-center text-xs text-ink-faint">
-        © {new Date().getFullYear()} BellinaGrigia · Dubai, UAE
+        © {new Date().getFullYear()} Bellinagrigia · Est. 2016 · Dubai, UAE
       </p>
     </footer>
   );
