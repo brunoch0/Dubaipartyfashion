@@ -5,6 +5,15 @@
 
 ---
 
+## 2026-07-23 — 브랜드 시스템 완성 (Claude Design)
+
+- Claude Design "BellinaGrigia Design System" 프로젝트를 완전한 브랜드 킷으로 확장 (14개 파일):
+  - Foundations 6: Brand(정의·씬 브랜드 포지셔닝·보이스&톤), Colors, Typography, Logo(재제작본 + 사용 규칙), Imagery(필름톤 공식), Spacing/Layout(+RTL)
+  - Components 5: Buttons, Forms, Cards, Hero, Navigation
+  - Templates 1: Instagram 피드(1:1)/스토리(9:16) 프레임 — 공동 포스팅용
+  - tokens.css 요약 (단일 소스는 web/app/globals.css)
+- 소스는 리포 design-system/ — 수정 시 DesignSync로 재푸시
+
 ## 2026-07-23 — 로고 재제작 / 영어 기본 정책
 
 - 파트너 제공 로고 목업(JPEG, 종이질감)을 기반으로 클린 버전 재제작 (Higgsfield nano_banana_pro + 배경 제거 + 화이트 키잉):
