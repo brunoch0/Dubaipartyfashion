@@ -23,6 +23,6 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Skip API routes, static assets and files with extensions
-  matcher: ['/((?!api|_next|.*\\..*).*)'],
+  // Skip API routes, the admin area, static assets and files with extensions
+  matcher: ['/((?!api|admin|_next|.*\\..*).*)'],
 };

@@ -1,5 +1,13 @@
 # BellinaGrigia — 프로젝트 로그
 
+## 2026-07-23 — 어드민 구축 (/admin)
+
+- 인증: Supabase Auth 이메일 로그인 + `admin_emails` 화이트리스트 (가입해도 화이트리스트 밖이면 권한 없음). RLS `is_admin()` 함수로 콘텐츠 전 테이블 CRUD 허용
+- 관리 화면: 대시보드(대기명단/RSVP 수, 최근 7일 방문 이벤트) · 사이트 문구(히어로/소개/About) · 아티클 · 이벤트 · 룩북(+이미지 정렬/캡션) · SNS 링크/피드 · 사전예약 · 대기명단/RSVP 조회+CSV
+- 다국어 입력: ko/en/ar 탭 폼, 이미지 업로드는 Supabase Storage `media` 버킷(공개 읽기, 어드민만 쓰기)
+- 구조: 설정 기반 제네릭 CRUD (`lib/admin/resources.ts`에 필드 추가만 하면 새 리소스 관리 가능)
+- ⚠️ 관리자 계정은 Bruno가 Supabase 대시보드에서 직접 생성 필요 (Authentication → Add user, 이메일 chohj0228@gmail.com — 화이트리스트 등록됨). 파트너 계정 추가 시 admin_emails에 이메일 insert + 유저 생성
+
 > 살아있는 문서. 미팅·결정·작업 내역을 시간순으로 기록한다. 최신이 위.
 > 스펙 스냅샷은 `docs/archive/`에 날짜별로 보관 (파일 자체는 수정하지 않음).
 
