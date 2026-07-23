@@ -1,6 +1,14 @@
 export const LOCALES = ['en', 'ko', 'ar'] as const;
 export type Locale = (typeof LOCALES)[number];
+
+/** English is the primary language. */
 export const DEFAULT_LOCALE: Locale = 'en';
+
+/**
+ * Locales offered in the language switcher. Routes stay functional for all
+ * LOCALES — to hide Korean from the UI later, just remove 'ko' here.
+ */
+export const VISIBLE_LOCALES: readonly Locale[] = ['en', 'ko', 'ar'];
 
 export function isLocale(v: string): v is Locale {
   return (LOCALES as readonly string[]).includes(v);

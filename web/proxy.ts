@@ -2,14 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { DEFAULT_LOCALE, LOCALES, isLocale } from './lib/i18n';
 
 function detectLocale(request: NextRequest): string {
+  // English-first: no browser-language detection. Only an explicit choice
+  // made via the language switcher (stored in the cookie) overrides it.
   const cookie = request.cookies.get('locale')?.value;
   if (cookie && isLocale(cookie)) return cookie;
-
-  const header = request.headers.get('accept-language') ?? '';
-  for (const part of header.split(',')) {
-    const code = part.split(';')[0].trim().slice(0, 2).toLowerCase();
-    if (isLocale(code)) return code;
-  }
   return DEFAULT_LOCALE;
 }
 

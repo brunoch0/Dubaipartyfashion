@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { LOCALES, type Locale } from '@/lib/i18n';
+import { VISIBLE_LOCALES, type Locale } from '@/lib/i18n';
 
 const LABEL: Record<Locale, string> = { en: 'EN', ko: '한국어', ar: 'عربي' };
 
@@ -17,7 +17,7 @@ export default function LocaleSwitcher({ locale }: { locale: Locale }) {
 
   return (
     <div className="flex items-center gap-1 text-xs">
-      {LOCALES.map((l) => (
+      {VISIBLE_LOCALES.map((l) => (
         <button
           key={l}
           onClick={() => switchTo(l)}
