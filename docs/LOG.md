@@ -1,5 +1,12 @@
 # BellinaGrigia — 프로젝트 로그
 
+## 2026-07-23 — 어드민 보강: 셀프 가입 + 변경 기록(audit log)
+
+- 로그인 페이지에 회원가입 탭 — admin_emails 화이트리스트 이메일은 DB 트리거로 자동 승인(인증 메일 불필요), 그 외는 가입해도 권한 없음
+- /admin/account 비밀번호 변경 페이지
+- **감사 로그**: 모든 콘텐츠 테이블 insert/update/delete를 트리거로 자동 기록(누가/언제/변경 전후) → /admin/audit 뷰어(변경 필드 요약 + before/after 펼침). 제출 데이터는 관리자의 수정/삭제만 기록
+- 파트너 온보딩 안내문 작성 완료 — 파트너 이메일 수신 대기 (수신 시 admin_emails에 등록)
+
 ## 2026-07-23 — 어드민 구축 (/admin)
 
 - 인증: Supabase Auth 이메일 로그인 + `admin_emails` 화이트리스트 (가입해도 화이트리스트 밖이면 권한 없음). RLS `is_admin()` 함수로 콘텐츠 전 테이블 CRUD 허용
