@@ -5,9 +5,10 @@ import { supabaseBrowser } from '@/lib/supabase-browser';
 import type { FieldDef } from '@/lib/admin/resources';
 import type { Locale } from '@/lib/i18n';
 
+// English-first: matches the site's primary language policy
 const LOCALE_TABS: { code: Locale; label: string }[] = [
-  { code: 'ko', label: '한국어' },
   { code: 'en', label: 'English' },
+  { code: 'ko', label: '한국어' },
   { code: 'ar', label: 'عربي' },
 ];
 
@@ -24,7 +25,7 @@ export function MLField({
   value: Record<string, string> | null;
   onChange: (v: Record<string, string>) => void;
 }) {
-  const [tab, setTab] = useState<Locale>('ko');
+  const [tab, setTab] = useState<Locale>('en');
   const v = value ?? {};
   const rows = field.type === 'mlmd' ? 14 : field.type === 'mltext' ? 3 : undefined;
 
