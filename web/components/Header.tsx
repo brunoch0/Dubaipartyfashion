@@ -8,9 +8,10 @@ export default function Header({ locale }: { locale: Locale }) {
     { href: `/${locale}/about`, label: 'About' },
     { href: `/${locale}/journal`, label: 'Journal' },
     { href: `/${locale}/lookbook`, label: 'Lookbook' },
-    // Events hidden for now (2026-09-16) — restore this line for the launch party
+    // Showcase mode (2026-09-16): sales happen via Instagram -> WhatsApp.
+    // Restore these lines when the launch party / shop phase begins.
     // { href: `/${locale}/events`, label: 'Events' },
-    { href: `/${locale}/shop`, label: 'Shop' },
+    // { href: `/${locale}/shop`, label: 'Shop' },
   ];
 
   return (
