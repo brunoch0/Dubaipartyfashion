@@ -8,7 +8,8 @@ export default function Header({ locale }: { locale: Locale }) {
     { href: `/${locale}/about`, label: 'About' },
     { href: `/${locale}/journal`, label: 'Journal' },
     { href: `/${locale}/lookbook`, label: 'Lookbook' },
-    { href: `/${locale}/events`, label: 'Events' },
+    // Events hidden for now (2026-09-16) — restore this line for the launch party
+    // { href: `/${locale}/events`, label: 'Events' },
     { href: `/${locale}/shop`, label: 'Shop' },
   ];
 
