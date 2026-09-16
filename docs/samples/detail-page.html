@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>상세페이지 샘플 — Cocoa Satin Slip</title>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Pinyon+Script&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#f4f3f1; --surface:#fff; --ink:#211f1d; --soft:#5c5854; --faint:#94908b; --line:#dcd9d5; --accent:#8d8478; }
+  * { margin:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--ink); }
+  .wrap { max-width:1000px; margin:0 auto; padding:32px 20px 80px; }
+  .guide { background:#fff8e6; border:1px solid #e6d9a8; padding:10px 14px; font-size:12px; color:#7a6a2f; margin-bottom:24px; }
+  .grid { display:grid; gap:40px; } @media(min-width:820px){ .grid{ grid-template-columns:1fr 1fr; } }
+  .photo { position:relative; aspect-ratio:3/4; background:linear-gradient(160deg,#3a3733,#6e675f 55%,#a39b90); overflow:hidden; }
+  .photo img { width:100%; height:100%; object-fit:cover; display:block; }
+  .photo .ph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; text-align:center; padding:20px; }
+  .kicker { font-size:11px; letter-spacing:.25em; text-transform:uppercase; color:var(--accent); }
+  h1 { font-family:'Marcellus',serif; font-weight:400; font-size:34px; line-height:1.2; margin-top:6px; }
+  .price { margin-top:10px; font-size:18px; } .price s { color:var(--faint); font-size:14px; margin-inline-start:8px; }
+  .story { margin-top:22px; line-height:1.9; color:var(--soft); font-size:14.5px; }
+  h2 { font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); margin:28px 0 10px; }
+  ul { padding-left:1.2em; line-height:1.9; font-size:14px; }
+  .sizes { display:flex; gap:8px; margin-top:4px; }
+  .sizes span { border:1px solid var(--line); padding:8px 16px; font-size:13px; background:var(--surface); }
+  .sizes .on { border-color:var(--ink); background:var(--ink); color:#fff; }
+  .cta { display:block; width:100%; margin-top:30px; background:var(--ink); color:#fff; text-align:center; padding:16px; font-size:13px; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; }
+  .cta-sub { text-align:center; font-size:12px; color:var(--faint); margin-top:8px; }
+  .note { border-top:1px solid var(--line); margin-top:28px; padding-top:18px; font-size:13px; color:var(--soft); line-height:1.8; }
+  .script { font-family:'Pinyon Script',cursive; font-size:22px; color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="guide">📝 <b>상세페이지 작성 샘플</b> — 노란 박스는 작성 가이드입니다(실제 페이지엔 안 나감). 사진: 이 파일과 같은 폴더에 <b>photo.jpg</b>로 저장하면 자동 표시.</p>
+  <div class="grid">
+    <div>
+      <div class="photo">
+        <div class="ph">여기에 착장 사진<br>(photo.jpg)</div>
+        <img src="photo.jpg" alt="Cocoa satin slip dress with sage linen robe" onerror="this.remove()">
+      </div>
+    </div>
+    <div>
+      <span class="kicker">First Drop · Partywear</span>
+      <h1>Cocoa Satin Slip</h1>
+      <div class="price">AED 420 <s>AED 520</s></div>
+      <p class="guide" style="margin-top:14px">이름은 색+소재+실루엣 조합으로 짧게. 가격은 사전예약 할인가를 함께.</p>
+
+      <p class="story">
+        물처럼 흐르는 코코아 브라운 새틴. 낮에는 린넨 로브 아래 조용히,
+        밤에는 그 자체로 충분하게. 두바이의 온도와 드레스코드 사이 어디쯤을 위해 만들었습니다.
+        <br><span class="script">— Bellinagrigia</span>
+      </p>
+      <p class="guide">스토리 3문장 공식: ①감각(소재가 어떻게 느껴지나) ②장면(언제 입나) ③브랜드 이유(왜 만들었나)</p>
+
+      <h2>Details</h2>
+      <ul>
+        <li>소재: 새틴 100% (안감 없음, 비침 적음)</li>
+        <li>핏: 바이어스 컷 — 몸을 따라 흐르는 실루엣</li>
+        <li>넥라인: 카울넥 / 총장: 128cm (M 기준)</li>
+        <li>제작: UAE 현지 소량 생산</li>
+      </ul>
+      <p class="guide">디테일은 4줄 이내. "UAE 현지 제작"은 우리 차별점 — 항상 넣기.</p>
+
+      <h2>Size</h2>
+      <div class="sizes"><span>S</span><span class="on">M</span><span>L</span></div>
+
+      <h2>Care</h2>
+      <ul><li>드라이클리닝 권장 · 그늘 건조 · 낮은 온도 다림질</li></ul>
+
+      <a class="cta" href="https://dubaipartyfashion.vercel.app/en#waitlist">Pre-order — Join the Waitlist</a>
+      <p class="cta-sub">첫 드롭은 50장 한정 · 대기명단 순서로 안내드립니다</p>
+      <p class="guide">쇼핑몰 오픈 전까지 CTA는 전부 대기명단으로. "50장 한정"은 샘플 최소수량과 연결된 실제 희소성.</p>
+
+      <div class="note">
+        <b>Styling note</b> — 세이지 린넨 로브와 레이어드하면 데이 룩,
+        골드 액세서리를 더하면 이브닝 룩. 힐과 샌들 모두 어울리는 기장.
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
