@@ -9,7 +9,8 @@
 - Vercel 프로젝트에 apex + www(308→apex) 추가 완료. GoDaddy DNS 입력만 남음 (misconfigured 상태 정상)
 - 파트너에게 GoDaddy Delegate Access(제품 및 도메인 권한, chohj0228@gmail.com) 초대 안내 발송
 - 입력할 레코드: A @ 76.76.21.21 / CNAME www cname.vercel-dns.com
-- 남은 대기: 위임 수락 → DNS 입력, 와츠앱 번호(CTA 연결), 사업자 정보(법적 페이지)
+- 와츠앱 연결 완료 (10-09): +971 52 797 4613 — 히어로 CTA "Order via WhatsApp" + 랜딩/푸터 링크, 프로덕션 반영 확인
+- 남은 대기: GoDaddy 위임 수락 → DNS 입력(A @ 76.76.21.21 / CNAME www cname.vercel-dns.com), 사업자 정보(법적 페이지)
 
 ## 2026-09-16 — 3회차(대면): AI 인수인계 시작 / 개인사업자 등록
 
