@@ -29,6 +29,7 @@ const pinyon = Pinyon_Script({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://bellinagrigia.com'),
   title: {
     default: 'Bellinagrigia — Dubai Lifestyle Brand',
     template: '%s · Bellinagrigia',

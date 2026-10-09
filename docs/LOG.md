@@ -11,7 +11,8 @@
 - 입력할 레코드: A @ 76.76.21.21 / CNAME www cname.vercel-dns.com
 - 와츠앱 연결 완료 (10-09): +971 52 797 4613 — 히어로 CTA "Order via WhatsApp" + 랜딩/푸터 링크, 프로덕션 반영 확인
 - GoDaddy 위임 수락 완료 (10-09) — DNS 수정 진행: A @ (원본 "Parked") → 76.76.21.21, CNAME www (원본 "bellinagrigia.com.") → cname.vercel-dns.com. NS/SOA/_domainconnect/_dmarc 유지
-- 남은 대기: DNS 전파 확인 → 도메인 오픈, 사업자 정보(법적 페이지)
+- **bellinagrigia.com 오픈 완료 (10-09)**: DNS 전파·SSL·www 리다이렉트·언어 리다이렉트 전부 검증. metadataBase 새 도메인으로 설정
+- 남은 대기: 사업자 정보(법적 페이지). GoDaddy 위임 세션 Exit 권장
 
 ## 2026-09-16 — 3회차(대면): AI 인수인계 시작 / 개인사업자 등록
 
