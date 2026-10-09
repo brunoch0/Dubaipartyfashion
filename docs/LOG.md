@@ -3,6 +3,14 @@
 > 살아있는 문서. 미팅·결정·작업 내역을 시간순으로 기록한다. 최신이 위.
 > 스펙 스냅샷은 `docs/archive/`에 날짜별로 보관 (파일 자체는 수정하지 않음).
 
+## 2026-10-09 — 도메인 확인: bellinagrigia.com (GoDaddy)
+
+- 파트너가 GoDaddy 구매 화면 영상으로 전달 — 도메인 **bellinagrigia.com** 확정
+- Vercel 프로젝트에 apex + www(308→apex) 추가 완료. GoDaddy DNS 입력만 남음 (misconfigured 상태 정상)
+- 파트너에게 GoDaddy Delegate Access(제품 및 도메인 권한, chohj0228@gmail.com) 초대 안내 발송
+- 입력할 레코드: A @ 76.76.21.21 / CNAME www cname.vercel-dns.com
+- 남은 대기: 위임 수락 → DNS 입력, 와츠앱 번호(CTA 연결), 사업자 정보(법적 페이지)
+
 ## 2026-09-16 — 3회차(대면): AI 인수인계 시작 / 개인사업자 등록
 
 - 파트너와 대면 미팅: Claude 사용법 교육 시작, 인수인계 문서(docs/인수인계_민유선님.md) 전달
