@@ -97,3 +97,36 @@ export function EventCard({ event, locale }: { event: EventItem; locale: Locale 
     </Link>
   );
 }
+
+export function ProductCard({ product, locale }: { product: import('@/lib/types').Product; locale: Locale }) {
+  return (
+    <Link href={`/${locale}/shop/${product.slug}`} className="group block">
+      <div className="relative">
+        <CoverImage src={product.cover_image} alt={pick(product.title, locale)} ratio="aspect-[3/4]" />
+        {pick(product.badge, locale) && (
+          <span className="absolute top-2 bg-ink px-2 py-1 text-[0.7rem] uppercase tracking-wide text-accent-ink ltr:left-2 rtl:right-2">
+            {pick(product.badge, locale)}
+          </span>
+        )}
+        {product.status === 'soldout' && (
+          <span className="absolute top-2 bg-surface px-2 py-1 text-[0.7rem] uppercase tracking-wide text-ink-soft ltr:right-2 rtl:left-2">
+            Sold out
+          </span>
+        )}
+      </div>
+      <div className="pt-3">
+        <h3 className="font-display text-lg leading-snug group-hover:underline">
+          {pick(product.title, locale)}
+        </h3>
+        {product.price_aed !== null && (
+          <p className="mt-0.5 text-sm">
+            AED {Number(product.price_aed).toLocaleString()}
+            {product.compare_price_aed ? (
+              <s className="ms-2 text-xs text-ink-faint">AED {Number(product.compare_price_aed).toLocaleString()}</s>
+            ) : null}
+          </p>
+        )}
+      </div>
+    </Link>
+  );
+}

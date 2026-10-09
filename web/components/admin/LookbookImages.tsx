@@ -5,16 +5,24 @@ import { supabaseBrowser } from '@/lib/supabase-browser';
 import { ImageField, MLField } from './fields';
 import type { LookbookImage } from '@/lib/types';
 
-/** Image manager for one lookbook: add by upload/URL, caption, reorder, delete. */
-export default function LookbookImages({ lookbookId }: { lookbookId: string }) {
+/** Image manager for a parent row (lookbook/product): add, caption, reorder, delete. */
+export default function LookbookImages({
+  lookbookId,
+  table = 'lookbook_images',
+  fkColumn = 'lookbook_id',
+}: {
+  lookbookId: string;
+  table?: 'lookbook_images' | 'product_images';
+  fkColumn?: 'lookbook_id' | 'product_id';
+}) {
   const [images, setImages] = useState<LookbookImage[]>([]);
   const [newUrl, setNewUrl] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     const { data } = await supabaseBrowser
-      .from('lookbook_images')
+      .from(table)
       .select('*')
-      .eq('lookbook_id', lookbookId)
+      .eq(fkColumn, lookbookId)
       .order('sort');
     setImages((data as LookbookImage[]) ?? []);
   }, [lookbookId]);
@@ -26,8 +34,8 @@ export default function LookbookImages({ lookbookId }: { lookbookId: string }) {
   async function add() {
     if (!newUrl) return;
     const maxSort = images.reduce((m, i) => Math.max(m, i.sort), 0);
-    const { error } = await supabaseBrowser.from('lookbook_images').insert({
-      lookbook_id: lookbookId,
+    const { error } = await supabaseBrowser.from(table).insert({
+      [fkColumn]: lookbookId,
       image_url: newUrl,
       sort: maxSort + 1,
     });
@@ -37,13 +45,13 @@ export default function LookbookImages({ lookbookId }: { lookbookId: string }) {
   }
 
   async function update(id: string, patch: Partial<LookbookImage>) {
-    await supabaseBrowser.from('lookbook_images').update(patch).eq('id', id);
+    await supabaseBrowser.from(table).update(patch).eq('id', id);
     load();
   }
 
   async function remove(id: string) {
     if (!confirm('이미지를 삭제할까요?')) return;
-    await supabaseBrowser.from('lookbook_images').delete().eq('id', id);
+    await supabaseBrowser.from(table).delete().eq('id', id);
     load();
   }
 
@@ -52,15 +60,15 @@ export default function LookbookImages({ lookbookId }: { lookbookId: string }) {
     const swap = images[index + delta];
     if (!target || !swap) return;
     await Promise.all([
-      supabaseBrowser.from('lookbook_images').update({ sort: swap.sort }).eq('id', target.id),
-      supabaseBrowser.from('lookbook_images').update({ sort: target.sort }).eq('id', swap.id),
+      supabaseBrowser.from(table).update({ sort: swap.sort }).eq('id', target.id),
+      supabaseBrowser.from(table).update({ sort: target.sort }).eq('id', swap.id),
     ]);
     load();
   }
 
   return (
     <div>
-      <h2 className="font-display text-xl">룩북 이미지 ({images.length})</h2>
+      <h2 className="font-display text-xl">이미지 ({images.length})</h2>
 
       <div className="mt-4 max-w-xl border border-line bg-surface p-4">
         <p className="mb-2 text-xs uppercase tracking-wide text-ink-soft">이미지 추가</p>

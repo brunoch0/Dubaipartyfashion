@@ -1,6 +1,8 @@
 import { supabase } from './supabase';
 import type {
   Article,
+  Product,
+  ProductImage,
   EventItem,
   LinkItem,
   Lookbook,
@@ -125,4 +127,39 @@ export async function getEvent(slug: string): Promise<EventItem | null> {
 export async function getSnsPosts(): Promise<SnsPost[]> {
   const { data } = await supabase.from('sns_posts').select('*').order('sort');
   return (data as SnsPost[]) ?? [];
+}
+
+export async function getProducts(limit?: number): Promise<Product[]> {
+  let q = supabase
+    .from('products')
+    .select('*')
+    .neq('status', 'draft')
+    .order('sort');
+  if (limit) q = q.limit(limit);
+  const { data } = await q;
+  return (data as Product[]) ?? [];
+}
+
+export async function getProduct(
+  slug: string
+): Promise<{ product: Product; images: ProductImage[] } | null> {
+  const { data: product } = await supabase
+    .from('products')
+    .select('*')
+    .neq('status', 'draft')
+    .eq('slug', slug)
+    .maybeSingle();
+  if (!product) return null;
+  const { data: images } = await supabase
+    .from('product_images')
+    .select('*')
+    .eq('product_id', product.id)
+    .order('sort');
+  return { product: product as Product, images: (images as ProductImage[]) ?? [] };
+}
+
+/** WhatsApp number (digits only) from the admin-editable settings slot */
+export async function getWhatsApp(): Promise<string> {
+  const settings = await getSiteContent<{ whatsapp?: string }>('settings');
+  return settings?.whatsapp ?? '971527974613';
 }

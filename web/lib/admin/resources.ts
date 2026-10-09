@@ -96,6 +96,36 @@ export const RESOURCES: Record<string, ResourceDef> = {
       { name: 'sort', label: '정렬', type: 'number' },
     ],
   },
+  products: {
+    table: 'products',
+    label: '상품',
+    titleField: 'ml:title',
+    orderBy: { column: 'sort', ascending: true },
+    fields: [
+      { name: 'slug', label: 'Slug (URL)', type: 'text', required: true, hint: '예: cocoa-satin-slip' },
+      {
+        name: 'status',
+        label: '상태',
+        type: 'select',
+        options: [
+          { value: 'published', label: '판매중' },
+          { value: 'soldout', label: '품절' },
+          { value: 'draft', label: '숨김(초안)' },
+        ],
+      },
+      { name: 'title', label: '상품명', type: 'ml', required: true },
+      { name: 'summary', label: '한 줄 소개', type: 'mltext' },
+      { name: 'details', label: '상세 설명 (마크다운)', type: 'mlmd' },
+      { name: 'price_aed', label: '가격 (AED)', type: 'number' },
+      { name: 'compare_price_aed', label: '할인 전 가격 (선택)', type: 'number' },
+      { name: 'sizes', label: '사이즈', type: 'tags', hint: 'S, M, L' },
+      { name: 'cover_image', label: '대표 이미지', type: 'image' },
+      { name: 'badge', label: '배지 문구', type: 'ml', hint: '예: 첫 드롭 · 50장 한정' },
+      { name: 'payment_link', label: '결제 링크 (선택)', type: 'text', hint: 'Ziina 등 결제 링크 붙여넣기 — 있으면 "바로 결제" 버튼 표시' },
+      { name: 'tags', label: '태그', type: 'tags' },
+      { name: 'sort', label: '정렬', type: 'number' },
+    ],
+  },
   lookbooks: {
     table: 'lookbooks',
     label: '룩북',
@@ -208,6 +238,12 @@ export const RESOURCES: Record<string, ResourceDef> = {
 
 /** site_content slots edited with the same form engine (upsert by key) */
 export const CONTENT_SLOTS: Record<string, { label: string; fields: FieldDef[] }> = {
+  settings: {
+    label: '설정',
+    fields: [
+      { name: 'whatsapp', label: '와츠앱 번호', type: 'text', hint: '숫자만, 국가코드 포함 (예: 971527974613) — 샵 주문 버튼이 이 번호로 연결됩니다' },
+    ],
+  },
   hero: {
     label: '랜딩 히어로',
     fields: [

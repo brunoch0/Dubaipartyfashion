@@ -4,21 +4,15 @@ import { isLocale, pick, type Locale } from '@/lib/i18n';
 import { t } from '@/lib/dictionary';
 import {
   getSiteContent,
-  getLinks,
-  getPreorderCampaigns,
-  getArticles,
   getLookbooks,
-  getEvents,
-  getSnsPosts,
+  getProducts,
   type HeroContent,
   type AboutSection,
 } from '@/lib/content';
 import Impression from '@/components/Impression';
 import HeroCta from '@/components/HeroCta';
 import HeroVisual from '@/components/HeroVisual';
-import TrackedLink from '@/components/TrackedLink';
-import WaitlistForm from '@/components/WaitlistForm';
-import { ArticleCard, EventCard, LookbookCard } from '@/components/cards';
+import { LookbookCard, ProductCard } from '@/components/cards';
 
 export const revalidate = 60;
 
@@ -31,17 +25,12 @@ export default async function LandingPage({
   if (!isLocale(locale)) notFound();
   const l = locale as Locale;
 
-  const [hero, intro, links, preorders, articles, lookbooks, events, snsPosts] =
-    await Promise.all([
-      getSiteContent<HeroContent>('hero'),
-      getSiteContent<AboutSection>('landing_intro'),
-      getLinks('landing_links'),
-      getPreorderCampaigns(),
-      getArticles(3),
-      getLookbooks(3),
-      getEvents(3),
-      getSnsPosts(),
-    ]);
+  const [hero, intro, lookbooks, products] = await Promise.all([
+    getSiteContent<HeroContent>('hero'),
+    getSiteContent<AboutSection>('landing_intro'),
+    getLookbooks(3),
+    getProducts(3),
+  ]);
 
   return (
     <>
@@ -101,58 +90,19 @@ export default async function LandingPage({
         </section>
       )}
 
-      {/* ===== Preorder / crowdfunding ===== */}
-      {preorders.length > 0 && (
-        <Impression event="preorder_section_impression" props={{ status: preorders[0].status }}>
-          <section className="border-y border-line bg-surface">
-            <div className="mx-auto grid max-w-6xl gap-8 px-6 py-16 md:grid-cols-2 md:items-center">
-              {preorders.map((p) => (
-                <div key={p.id} className="md:col-span-2">
-                  <p className="text-xs uppercase tracking-widest text-accent">
-                    {p.status === 'current' ? t('preorder', l) : t('preorder_upcoming', l)}
-                  </p>
-                  <h2 className="mt-2 font-display text-2xl sm:text-3xl">{pick(p.title, l)}</h2>
-                  <p className="mt-3 max-w-2xl text-ink-soft">{pick(p.summary, l)}</p>
-                  <div className="mt-6">
-                    {p.status === 'current' && p.url ? (
-                      <TrackedLink
-                        href={p.url}
-                        newTab
-                        event="preorder_link_click"
-                        props={{ status: p.status }}
-                        className="inline-block bg-ink px-8 py-3 text-sm uppercase tracking-widest text-accent-ink hover:opacity-85"
-                      >
-                        {pick(p.link_label, l) || t('preorder', l)}
-                      </TrackedLink>
-                    ) : (
-                      /* Upcoming → fall back to waitlist CTA so conversion never dead-ends */
-                      <a
-                        href="#waitlist"
-                        className="inline-block bg-ink px-8 py-3 text-sm uppercase tracking-widest text-accent-ink hover:opacity-85"
-                      >
-                        {t('join_waitlist', l)}
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        </Impression>
-      )}
 
-      {/* ===== Upcoming events ===== */}
-      {events.length > 0 && (
+      {/* ===== Shop preview ===== */}
+      {products.length > 0 && (
         <section className="mx-auto max-w-6xl px-6 py-20">
           <div className="mb-8 flex items-end justify-between">
-            <h2 className="font-display text-2xl sm:text-3xl">{t('upcoming_events', l)}</h2>
-            <Link href={`/${l}/events`} className="text-sm uppercase tracking-widest text-ink-soft hover:text-ink">
+            <h2 className="font-display text-2xl sm:text-3xl">Shop</h2>
+            <Link href={`/${l}/shop`} className="text-sm uppercase tracking-widest text-ink-soft hover:text-ink">
               {t('view_all', l)}
             </Link>
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} locale={l} />
+            {products.map((p) => (
+              <ProductCard key={p.id} product={p} locale={l} />
             ))}
           </div>
         </section>
@@ -177,87 +127,6 @@ export default async function LandingPage({
         </section>
       )}
 
-      {/* ===== Journal preview ===== */}
-      {articles.length > 0 && (
-        <section className="mx-auto max-w-6xl px-6 py-20">
-          <div className="mb-8 flex items-end justify-between">
-            <h2 className="font-display text-2xl sm:text-3xl">{t('nav_journal', l)}</h2>
-            <Link href={`/${l}/journal`} className="text-sm uppercase tracking-widest text-ink-soft hover:text-ink">
-              {t('view_all', l)}
-            </Link>
-          </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {articles.map((article) => (
-              <ArticleCard key={article.id} article={article} locale={l} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* ===== SNS links + feed ===== */}
-      {(links.length > 0 || snsPosts.length > 0) && (
-        <Impression event="landing_link_impression" props={{ sectionId: 'landing_links' }}>
-          <section className="border-t border-line bg-surface-muted">
-            <div className="mx-auto max-w-6xl px-6 py-20 text-center">
-              <h2 className="font-display text-2xl sm:text-3xl">{t('sns_feed', l)}</h2>
-              {snsPosts.length > 0 && (
-                <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
-                  {snsPosts.slice(0, 6).map((post) => (
-                    <TrackedLink
-                      key={post.id}
-                      href={post.post_url}
-                      newTab
-                      event="sns_card_click"
-                      props={{ platform: post.platform, sectionId: 'sns_feed' }}
-                      className="group relative block aspect-square overflow-hidden bg-surface"
-                    >
-                      {post.image_url ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={post.image_url}
-                          alt={pick(post.caption, l) || post.platform}
-                          loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-                        />
-                      ) : (
-                        <div className="brand-gradient h-full w-full" />
-                      )}
-                    </TrackedLink>
-                  ))}
-                </div>
-              )}
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                {links.map((link) => (
-                  <TrackedLink
-                    key={link.id}
-                    href={link.url}
-                    newTab={link.new_tab}
-                    event="landing_link_click"
-                    props={{
-                      sectionId: link.section_id,
-                      linkType: link.link_type,
-                      platform: link.platform,
-                    }}
-                    className="border border-line bg-surface px-5 py-2.5 text-sm hover:border-ink"
-                  >
-                    {pick(link.label, l)}
-                  </TrackedLink>
-                ))}
-              </div>
-            </div>
-          </section>
-        </Impression>
-      )}
-
-      {/* ===== Waitlist ===== */}
-      <section id="waitlist" className="border-t border-line">
-        <div className="mx-auto max-w-2xl px-6 py-20">
-          <h2 className="text-center font-display text-2xl sm:text-3xl">{t('join_waitlist', l)}</h2>
-          <div className="mt-8">
-            <WaitlistForm locale={l} />
-          </div>
-        </div>
-      </section>
     </>
   );
 }

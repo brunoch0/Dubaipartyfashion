@@ -3,6 +3,15 @@
 > 살아있는 문서. 미팅·결정·작업 내역을 시간순으로 기록한다. 최신이 위.
 > 스펙 스냅샷은 `docs/archive/`에 날짜별로 보관 (파일 자체는 수정하지 않음).
 
+## 2026-10-09 — 사이트 단순화: Lookbook + Shop 체제
+
+- 메뉴를 **Lookbook · Shop** 둘로 축소 (About은 푸터, Journal/Events 숨김 — 라우트 유지)
+- 랜딩 간소화: 히어로 → 소개 → 샵 미리보기 → 룩북 (아티클·SNS피드·대기명단 섹션 제거)
+- **샵 구축 (결제 없는 와츠앱 주문형)**: products/product_images 테이블 + /shop 그리드 + 상세(갤러리·AED 가격·사이즈·마크다운 상세·"Order via WhatsApp" 버튼에 상품명 자동 포함). 어드민 "상품" 메뉴로 파트너 셀프 등록 가능 (이미지 매니저 포함)
+- 상품별 **결제 링크 필드** (Ziina 등 링크 붙여넣으면 "Pay Now" 버튼 자동 표시) — API 연동 없이 결제 수용 가능한 구조
+- 와츠앱 번호는 어드민 → 사이트 문구 → 설정에서 변경 가능 (settings 슬롯)
+- 샘플 상품 1개 시드: Cocoa Satin Slip (AI 스튜디오컷 3장, AED 420)
+
 ## 2026-10-09 — 도메인 확인: bellinagrigia.com (GoDaddy)
 
 - 파트너가 GoDaddy 구매 화면 영상으로 전달 — 도메인 **bellinagrigia.com** 확정

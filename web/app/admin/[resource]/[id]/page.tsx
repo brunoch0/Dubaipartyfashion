@@ -76,6 +76,11 @@ export default function ResourceEditPage() {
           <LookbookImages lookbookId={params.id} />
         </div>
       )}
+      {def.table === 'products' && !isNew && (
+        <div className="mt-12 border-t border-line pt-8">
+          <LookbookImages lookbookId={params.id} table="product_images" fkColumn="product_id" />
+        </div>
+      )}
     </div>
   );
 }

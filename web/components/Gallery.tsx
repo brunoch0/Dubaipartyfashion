@@ -2,11 +2,17 @@
 
 import Image from 'next/image';
 import { useState, useEffect, useCallback } from 'react';
-import type { LookbookImage } from '@/lib/types';
-import { pick, type Locale } from '@/lib/i18n';
+import { pick, type Locale, type MLText } from '@/lib/i18n';
 
-/** Lookbook detail gallery with a simple lightbox. */
-export default function Gallery({ images, locale }: { images: LookbookImage[]; locale: Locale }) {
+interface GalleryImage {
+  id: string;
+  image_url: string;
+  caption?: MLText;
+  alt?: MLText;
+}
+
+/** Image gallery with a simple lightbox (lookbooks, products). */
+export default function Gallery({ images, locale }: { images: GalleryImage[]; locale: Locale }) {
   const [open, setOpen] = useState<number | null>(null);
 
   const close = useCallback(() => setOpen(null), []);

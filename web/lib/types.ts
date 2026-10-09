@@ -96,3 +96,29 @@ export interface SnsPost {
   caption: MLText;
   sort: number;
 }
+
+export interface Product {
+  id: string;
+  slug: string;
+  title: MLText;
+  summary: MLText;
+  details: MLText;
+  price_aed: number | null;
+  compare_price_aed: number | null;
+  sizes: string[];
+  cover_image: string | null;
+  tags: string[];
+  badge: MLText;
+  payment_link: string | null;
+  sort: number;
+  status: 'published' | 'draft' | 'soldout';
+}
+
+export interface ProductImage {
+  id: string;
+  product_id: string;
+  image_url: string;
+  caption: MLText;
+  alt: MLText;
+  sort: number;
+}

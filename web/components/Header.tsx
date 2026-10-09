@@ -4,14 +4,11 @@ import LocaleSwitcher from './LocaleSwitcher';
 
 export default function Header({ locale }: { locale: Locale }) {
   // Navigation stays English in every locale (brand decision, 2026-07-23)
+  // Simplified site (2026-10-09): Lookbook + Shop only.
+  // Hidden but still routable: /about (footer link), /journal, /events.
   const nav = [
-    { href: `/${locale}/about`, label: 'About' },
-    { href: `/${locale}/journal`, label: 'Journal' },
     { href: `/${locale}/lookbook`, label: 'Lookbook' },
-    // Showcase mode (2026-09-16): sales happen via Instagram -> WhatsApp.
-    // Restore these lines when the launch party / shop phase begins.
-    // { href: `/${locale}/events`, label: 'Events' },
-    // { href: `/${locale}/shop`, label: 'Shop' },
+    { href: `/${locale}/shop`, label: 'Shop' },
   ];
 
   return (

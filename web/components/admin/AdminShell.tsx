@@ -11,6 +11,7 @@ const NAV = [
   { href: '/admin/articles', label: '아티클' },
   { href: '/admin/events', label: '이벤트' },
   { href: '/admin/lookbooks', label: '룩북' },
+  { href: '/admin/products', label: '상품' },
   { href: '/admin/links', label: 'SNS/링크' },
   { href: '/admin/sns', label: 'SNS 피드' },
   { href: '/admin/preorder', label: '사전예약' },
