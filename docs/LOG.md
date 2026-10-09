@@ -10,7 +10,8 @@
 - 파트너에게 GoDaddy Delegate Access(제품 및 도메인 권한, chohj0228@gmail.com) 초대 안내 발송
 - 입력할 레코드: A @ 76.76.21.21 / CNAME www cname.vercel-dns.com
 - 와츠앱 연결 완료 (10-09): +971 52 797 4613 — 히어로 CTA "Order via WhatsApp" + 랜딩/푸터 링크, 프로덕션 반영 확인
-- 남은 대기: GoDaddy 위임 수락 → DNS 입력(A @ 76.76.21.21 / CNAME www cname.vercel-dns.com), 사업자 정보(법적 페이지)
+- GoDaddy 위임 수락 완료 (10-09) — DNS 수정 진행: A @ (원본 "Parked") → 76.76.21.21, CNAME www (원본 "bellinagrigia.com.") → cname.vercel-dns.com. NS/SOA/_domainconnect/_dmarc 유지
+- 남은 대기: DNS 전파 확인 → 도메인 오픈, 사업자 정보(법적 페이지)
 
 ## 2026-09-16 — 3회차(대면): AI 인수인계 시작 / 개인사업자 등록
 
