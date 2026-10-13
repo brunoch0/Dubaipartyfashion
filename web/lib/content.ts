@@ -161,5 +161,5 @@ export async function getProduct(
 /** WhatsApp number (digits only) from the admin-editable settings slot */
 export async function getWhatsApp(): Promise<string> {
   const settings = await getSiteContent<{ whatsapp?: string }>('settings');
-  return settings?.whatsapp ?? '971527974613';
+  return settings?.whatsapp ?? '971585538119';
 }
