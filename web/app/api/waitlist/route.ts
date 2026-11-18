@@ -1,7 +1,5 @@
 import { supabase } from '@/lib/supabase';
-import { boundedString, clientIp, plainObject, rateLimited, readJsonObject } from '@/lib/api-guard';
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { boundedString, clientIp, plainObject, rateLimited, readJsonObject, validEmail } from '@/lib/api-guard';
 
 export async function POST(request: Request) {
   const body = await readJsonObject(request);
@@ -18,15 +16,22 @@ export async function POST(request: Request) {
 
   // Over-length input is rejected, not silently truncated
   const name = boundedString(body.name, 120);
-  const email = boundedString(body.email, 254)?.toLowerCase() ?? null;
-  if (!name || !email || !EMAIL_RE.test(email)) {
+  const email = validEmail(body.email);
+  if (!name || !email) {
     return Response.json({ error: 'validation' }, { status: 400 });
   }
 
   const locale = ['ko', 'en', 'ar'].includes(body.locale as string) ? (body.locale as string) : 'en';
-  const tags = Array.isArray(body.preference_tags)
-    ? (body.preference_tags as unknown[]).filter((v): v is string => typeof v === 'string' && v.length <= 40).slice(0, 10)
-    : [];
+  // Tags: absent means none; anything else must be a valid array (no coercion, no truncation)
+  const rawTags = body.preference_tags ?? [];
+  if (
+    !Array.isArray(rawTags) ||
+    rawTags.length > 10 ||
+    rawTags.some((v) => typeof v !== 'string' || v.length > 40)
+  ) {
+    return Response.json({ error: 'validation' }, { status: 400 });
+  }
+  const tags = rawTags as string[];
 
   const { error } = await supabase.from('waitlist_submissions').insert({
     name,

@@ -1,7 +1,5 @@
 import { supabase } from '@/lib/supabase';
-import { boundedString, clientIp, plainObject, rateLimited, readJsonObject } from '@/lib/api-guard';
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { boundedString, clientIp, plainObject, rateLimited, readJsonObject, validEmail } from '@/lib/api-guard';
 
 export async function POST(request: Request) {
   const body = await readJsonObject(request);
@@ -17,8 +15,7 @@ export async function POST(request: Request) {
 
   const eventId = boundedString(body.event_id, 64);
   const name = boundedString(body.name, 120);
-  const emailRaw = boundedString(body.email, 254)?.toLowerCase() ?? null;
-  const email = emailRaw && EMAIL_RE.test(emailRaw) ? emailRaw : null;
+  const email = validEmail(body.email);
   const phone = boundedString(body.phone, 40);
 
   if (!eventId || !name || (!email && !phone)) {

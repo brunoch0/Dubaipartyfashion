@@ -14,7 +14,20 @@ export function rateLimited(ip: string, max = 5, windowMs = 60_000): boolean {
 }
 
 export function clientIp(request: Request): string {
-  return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
+  // Vercel sets x-real-ip; the first x-forwarded-for hop is client-controlled
+  // (spoofable rate-limit key), so fall back to the LAST hop, which the
+  // platform appends.
+  const real = request.headers.get('x-real-ip')?.trim();
+  if (real) return real;
+  const chain = request.headers.get('x-forwarded-for')?.split(',') ?? [];
+  return chain.at(-1)?.trim() || 'unknown';
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+/** Shared email validation: bounded, trimmed, lowercased, format-checked. */
+export function validEmail(v: unknown): string | null {
+  const s = boundedString(v, 254)?.toLowerCase() ?? null;
+  return s && EMAIL_RE.test(s) ? s : null;
 }
 
 /** JSON body must be a plain object (not null/array/primitive). */
