@@ -1,49 +1,32 @@
 import { supabase } from '@/lib/supabase';
+import { boundedString, clientIp, plainObject, rateLimited, readJsonObject } from '@/lib/api-guard';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const hits = new Map<string, { count: number; ts: number }>();
-function rateLimited(ip: string, max = 5, windowMs = 60_000): boolean {
-  const now = Date.now();
-  const entry = hits.get(ip);
-  if (!entry || now - entry.ts > windowMs) {
-    hits.set(ip, { count: 1, ts: now });
-    return false;
-  }
-  entry.count += 1;
-  return entry.count > max;
-}
-
 export async function POST(request: Request) {
-  let body: Record<string, unknown>;
-  try {
-    body = await request.json();
-  } catch {
-    return Response.json({ error: 'invalid_json' }, { status: 400 });
-  }
+  const body = await readJsonObject(request);
+  if (!body) return Response.json({ error: 'invalid_json' }, { status: 400 });
 
   if (typeof body.website === 'string' && body.website.length > 0) {
     return Response.json({ ok: true }); // honeypot
   }
 
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
-  if (rateLimited(ip)) {
+  if (rateLimited(clientIp(request))) {
     return Response.json({ error: 'rate_limited' }, { status: 429 });
   }
 
-  const eventId = typeof body.event_id === 'string' ? body.event_id : '';
-  const name = typeof body.name === 'string' ? body.name.trim().slice(0, 120) : '';
-  const email =
-    typeof body.email === 'string' && EMAIL_RE.test(body.email.trim())
-      ? body.email.trim().toLowerCase().slice(0, 254)
-      : null;
-  const phone = typeof body.phone === 'string' ? body.phone.trim().slice(0, 40) || null : null;
+  const eventId = boundedString(body.event_id, 64);
+  const name = boundedString(body.name, 120);
+  const emailRaw = boundedString(body.email, 254)?.toLowerCase() ?? null;
+  const email = emailRaw && EMAIL_RE.test(emailRaw) ? emailRaw : null;
+  const phone = boundedString(body.phone, 40);
 
   if (!eventId || !name || (!email && !phone)) {
     return Response.json({ error: 'validation' }, { status: 400 });
   }
 
-  // Server-side guard: reject when the event is closed/full or unpublished
+  // Server-side guard: reject when the event is closed/full or unpublished.
+  // (Also enforced at the RLS policy level — this gives a clean error message.)
   const { data: event } = await supabase
     .from('events')
     .select('id,rsvp_status')
@@ -65,9 +48,9 @@ export async function POST(request: Request) {
     email,
     phone,
     party_size: partySize,
-    note: typeof body.note === 'string' ? body.note.trim().slice(0, 500) || null : null,
+    note: boundedString(body.note, 500),
     locale,
-    utm: typeof body.utm === 'object' && body.utm !== null ? body.utm : {},
+    utm: plainObject(body.utm),
   });
 
   if (error) {

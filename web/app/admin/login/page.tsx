@@ -59,7 +59,7 @@ export default function AdminLoginPage() {
     setBusy(false);
     if (loginErr) {
       setMode('login');
-      setNotice('가입 처리되었습니다. 확인 메일이 발송된 경우 링크 클릭 후 로그인해주세요.');
+      setNotice('가입 처리되었습니다. 메일함의 확인 링크를 클릭한 뒤 로그인해주세요.');
       return;
     }
     router.replace('/admin');

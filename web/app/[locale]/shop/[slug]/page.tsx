@@ -115,7 +115,7 @@ export default async function ProductPage({
                   >
                     {orderLabel}
                   </TrackedLink>
-                  {product.payment_link && (
+                  {product.payment_link?.startsWith('https://') && (
                     <TrackedLink
                       href={product.payment_link}
                       newTab

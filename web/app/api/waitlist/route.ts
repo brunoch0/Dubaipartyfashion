@@ -1,47 +1,31 @@
 import { supabase } from '@/lib/supabase';
+import { boundedString, clientIp, plainObject, rateLimited, readJsonObject } from '@/lib/api-guard';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Best-effort in-memory rate limit (per serverless instance)
-const hits = new Map<string, { count: number; ts: number }>();
-function rateLimited(ip: string, max = 5, windowMs = 60_000): boolean {
-  const now = Date.now();
-  const entry = hits.get(ip);
-  if (!entry || now - entry.ts > windowMs) {
-    hits.set(ip, { count: 1, ts: now });
-    return false;
-  }
-  entry.count += 1;
-  return entry.count > max;
-}
-
 export async function POST(request: Request) {
-  let body: Record<string, unknown>;
-  try {
-    body = await request.json();
-  } catch {
-    return Response.json({ error: 'invalid_json' }, { status: 400 });
-  }
+  const body = await readJsonObject(request);
+  if (!body) return Response.json({ error: 'invalid_json' }, { status: 400 });
 
   // Honeypot: bots fill hidden fields — pretend success, store nothing
   if (typeof body.website === 'string' && body.website.length > 0) {
     return Response.json({ ok: true });
   }
 
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
-  if (rateLimited(ip)) {
+  if (rateLimited(clientIp(request))) {
     return Response.json({ error: 'rate_limited' }, { status: 429 });
   }
 
-  const name = typeof body.name === 'string' ? body.name.trim().slice(0, 120) : '';
-  const email = typeof body.email === 'string' ? body.email.trim().toLowerCase().slice(0, 254) : '';
-  if (!name || !EMAIL_RE.test(email)) {
+  // Over-length input is rejected, not silently truncated
+  const name = boundedString(body.name, 120);
+  const email = boundedString(body.email, 254)?.toLowerCase() ?? null;
+  if (!name || !email || !EMAIL_RE.test(email)) {
     return Response.json({ error: 'validation' }, { status: 400 });
   }
 
   const locale = ['ko', 'en', 'ar'].includes(body.locale as string) ? (body.locale as string) : 'en';
   const tags = Array.isArray(body.preference_tags)
-    ? (body.preference_tags as string[]).filter((v) => typeof v === 'string').slice(0, 10)
+    ? (body.preference_tags as unknown[]).filter((v): v is string => typeof v === 'string' && v.length <= 40).slice(0, 10)
     : [];
 
   const { error } = await supabase.from('waitlist_submissions').insert({
@@ -49,8 +33,8 @@ export async function POST(request: Request) {
     email,
     preference_tags: tags,
     locale,
-    section_id: typeof body.section_id === 'string' ? body.section_id.slice(0, 80) : null,
-    utm: typeof body.utm === 'object' && body.utm !== null ? body.utm : {},
+    section_id: boundedString(body.section_id, 80),
+    utm: plainObject(body.utm),
   });
 
   if (error) {
