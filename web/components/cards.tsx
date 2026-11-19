@@ -103,11 +103,6 @@ export function ProductCard({ product, locale }: { product: import('@/lib/types'
     <Link href={`/${locale}/shop/${product.slug}`} className="group block">
       <div className="relative">
         <CoverImage src={product.cover_image} alt={pick(product.title, locale)} ratio="aspect-[3/4]" />
-        {pick(product.badge, locale) && (
-          <span className="absolute top-2 bg-ink px-2 py-1 text-[0.7rem] uppercase tracking-wide text-accent-ink ltr:left-2 rtl:right-2">
-            {pick(product.badge, locale)}
-          </span>
-        )}
         {product.status === 'soldout' && (
           <span className="absolute top-2 bg-surface px-2 py-1 text-[0.7rem] uppercase tracking-wide text-ink-soft ltr:right-2 rtl:left-2">
             Sold out
@@ -115,6 +110,11 @@ export function ProductCard({ product, locale }: { product: import('@/lib/types'
         )}
       </div>
       <div className="pt-3">
+        {pick(product.badge, locale) && (
+          <p className="text-[0.65rem] uppercase tracking-[0.2em] text-ink-faint">
+            {pick(product.badge, locale)}
+          </p>
+        )}
         <h3 className="font-display text-lg leading-snug group-hover:underline">
           {pick(product.title, locale)}
         </h3>

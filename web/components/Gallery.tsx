@@ -12,7 +12,16 @@ interface GalleryImage {
 }
 
 /** Image gallery with a simple lightbox (lookbooks, products). */
-export default function Gallery({ images, locale }: { images: GalleryImage[]; locale: Locale }) {
+export default function Gallery({
+  images,
+  locale,
+  columns = 3,
+}: {
+  images: GalleryImage[];
+  locale: Locale;
+  /** 3 = thumbnail grid (lookbooks), 1 = full-width stacked (product detail) */
+  columns?: 1 | 3;
+}) {
   const [open, setOpen] = useState<number | null>(null);
 
   const close = useCallback(() => setOpen(null), []);
@@ -39,7 +48,13 @@ export default function Gallery({ images, locale }: { images: GalleryImage[]; lo
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div
+        className={
+          columns === 1
+            ? 'grid grid-cols-1 gap-4'
+            : 'grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'
+        }
+      >
         {images.map((img, i) => (
           <figure key={img.id}>
             <button
@@ -51,7 +66,11 @@ export default function Gallery({ images, locale }: { images: GalleryImage[]; lo
                 src={img.image_url}
                 alt={pick(img.alt, locale) || ''}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes={
+                  columns === 1
+                    ? '(max-width: 1024px) 100vw, 50vw'
+                    : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+                }
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 loading="lazy"
               />

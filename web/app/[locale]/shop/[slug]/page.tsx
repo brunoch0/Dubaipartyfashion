@@ -62,12 +62,12 @@ export default async function ProductPage({
 
         <div className="mt-8 grid gap-12 lg:grid-cols-2">
           <div>
-            <Gallery images={images} locale={l} />
+            <Gallery images={images} locale={l} columns={1} />
           </div>
 
           <div>
             {pick(product.badge, l) && (
-              <p className="text-xs uppercase tracking-[0.25em] text-accent">
+              <p className="text-[0.65rem] uppercase tracking-[0.2em] text-ink-faint">
                 {pick(product.badge, l)}
               </p>
             )}
